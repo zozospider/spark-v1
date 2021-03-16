@@ -46,7 +46,8 @@ object WordCount {
     // ("Hello", 3)
     // ("Spark", 1)
     // ("World", 2)
-    val wordCount: RDD[(String, Int)] = wordGroup.map((tuple: (String, Iterable[String])) => (tuple._1, tuple._2.size))
+    val wordCount: RDD[(String, Int)] = wordGroup.mapValues((iterable: Iterable[String]) => iterable.size)
+    // val wordCount: RDD[(String, Int)] = wordGroup.map((tuple: (String, Iterable[String])) => (tuple._1, tuple._2.size))
     /*
     val wordCount: RDD[(String, Int)] = wordGroup.map {
       case (s, list) => (s, list.size)
