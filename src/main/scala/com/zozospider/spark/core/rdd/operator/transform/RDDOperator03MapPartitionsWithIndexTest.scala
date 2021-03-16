@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 算子 - Value 类型 - mapPartitionsWithIndex() - test - 获取第二个数据分区的数据
+// 转换算子 - Value 类型 - mapPartitionsWithIndex() - test - 获取第二个数据分区的数据
 object RDDOperator03MapPartitionsWithIndexTest {
 
   def main(args: Array[String]): Unit = {

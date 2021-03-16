@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 import java.text.SimpleDateFormat
 import java.util.Date
 
-// 算子 - Value 类型 - groupBy() - test - 从服务器日志数据 apache.log 中获取每个时间段访问量
+// 转换算子 - Value 类型 - groupBy() - test - 从服务器日志数据 apache.log 中获取每个时间段访问量
 object RDDOperator06GroupByTest {
 
   def main(args: Array[String]): Unit = {

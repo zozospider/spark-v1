@@ -1,6 +1,6 @@
 package com.zozospider.spark.core.rdd.operator.transform
 
-// 算子 - Key - Value 类型 - reduceByKey() groupByKey()
+// 转换算子 - Key - Value 类型 - reduceByKey() groupByKey()
 object RDDOperator17ReduceByKeyAndGroupByKey {
 
   def main(args: Array[String]): Unit = {

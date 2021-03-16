@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 算子 - Key - Value 类型 - combineByKey() - test - 获取相同 key 的 value 的平均值
+// 转换算子 - Key - Value 类型 - combineByKey() - test - 获取相同 key 的 value 的平均值
 object RDDOperator20CombineByKeyTest {
 
   def main(args: Array[String]): Unit = {

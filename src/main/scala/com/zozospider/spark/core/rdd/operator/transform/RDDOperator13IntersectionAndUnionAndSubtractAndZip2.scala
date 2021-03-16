@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 算子 - 双 Value 类型 - zip()
+// 转换算子 - 双 Value 类型 - zip()
 object RDDOperator13IntersectionAndUnionAndSubtractAndZip2 {
 
   def main(args: Array[String]): Unit = {

@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 算子 - Key - Value 类型 - join()
+// 转换算子 - Key - Value 类型 - join()
 object RDDOperator23Join {
 
   def main(args: Array[String]): Unit = {

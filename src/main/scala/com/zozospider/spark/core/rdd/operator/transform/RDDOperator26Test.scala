@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 算子 - test - 统计出每一个省份每个广告被点击数量排行的 top3
+// 转换算子 - test - 统计出每一个省份每个广告被点击数量排行的 top3
 object RDDOperator26Test {
 
   def main(args: Array[String]): Unit = {

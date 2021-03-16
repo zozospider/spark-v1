@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 算子 - Value 类型 - flatMap() - test - 将 List(List(1,2), 3, List(4,5)) 进行扁平化操作
+// 转换算子 - Value 类型 - flatMap() - test - 将 List(List(1,2), 3, List(4,5)) 进行扁平化操作
 object RDDOperator04FlatMapTest {
 
   def main(args: Array[String]): Unit = {

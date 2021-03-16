@@ -3,7 +3,7 @@ package com.zozospider.spark.core.rdd.operator.transform
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{HashPartitioner, SparkConf, SparkContext}
 
-// 算子 - Key - Value 类型 - partitionBy()
+// 转换算子 - Key - Value 类型 - partitionBy()
 object RDDOperator14PartitionBy {
 
   def main(args: Array[String]): Unit = {
