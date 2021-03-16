@@ -50,3 +50,6 @@ bin/
 project/
 target/
 build/
+
+# Hadoop Spark
+output*
