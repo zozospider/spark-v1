@@ -1,10 +1,10 @@
-package com.zozospider.spark.core.rdd.operator.serializable
+package com.zozospider.spark.core.rdd.serializable
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 // 序列化 - 闭包检查 - test - 类的方法和属性
-object RDDOperator01CheckSerializableTest {
+object RDD01CheckSerializableTest {
 
   def main(args: Array[String]): Unit = {
     val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")

@@ -1,7 +1,7 @@
-package com.zozospider.spark.core.rdd.operator.serializable
+package com.zozospider.spark.core.rdd.serializable
 
 // 序列化 - Kryo 序列化框架
-object RDDOperator02Kryo {
+object RDD02Kryo {
 
   def main(args: Array[String]): Unit = {
 
