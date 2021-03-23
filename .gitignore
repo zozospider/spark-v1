@@ -53,3 +53,4 @@ build/
 
 # Hadoop Spark
 output*
+checkpoint*
