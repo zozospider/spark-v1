@@ -10,7 +10,7 @@ import java.util.Date
 object RDDOperator06GroupByTest {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     val rdd: RDD[String] = context.textFile("data-dir\\\\apache.log.txt")

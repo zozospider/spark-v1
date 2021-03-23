@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDOperator13IntersectionAndUnionAndSubtractAndZip2 {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // zip() 要求两个数据源的分区数量相同, 且每个分区的元素个数相同

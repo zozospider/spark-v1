@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDOperator03MapPartitionsWithIndex2 {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     val rdd: RDD[Int] = context.makeRDD(seq = List(1, 2, 3, 4))

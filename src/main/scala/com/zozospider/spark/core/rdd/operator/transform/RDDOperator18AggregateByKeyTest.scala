@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDOperator18AggregateByKeyTest {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // aggregateByKey() 最终返回数据结果应该和初始值 zeroValue 类型一致

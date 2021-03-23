@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDD01CheckSerializable {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // 从计算的角度, 算子以外的代码都是在 Driver 端执行, 算子里面的代码都是在 Executor 端执行

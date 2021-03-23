@@ -8,7 +8,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDPersistence02CacheAndPersist {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // RDD 通过 Cache 或者 Persist 方法将前面的计算结果缓存, 默认情况下会把数据以缓存在 JVM 的堆内存中

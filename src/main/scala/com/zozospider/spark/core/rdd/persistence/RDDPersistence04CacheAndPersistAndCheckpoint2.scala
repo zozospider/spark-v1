@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDPersistence04CacheAndPersistAndCheckpoint2 {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // Cache 缓存只是将数据保存起来, 不切断血缘依赖

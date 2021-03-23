@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDOperator04FlatMap2 {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     val rdd: RDD[String] = context.makeRDD(seq = List("aa bb", "ab aa"))

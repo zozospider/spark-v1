@@ -7,7 +7,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDDOperator10Coalesce2 {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("Operator").setMaster("local[*]")
+    val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // 如果想要扩大分区, 则必须将 coalesce() 的第二个参数 shuffle 设置成 true, 否则没有意义 (因为 coalesce() 默认不会将分区的数据打乱重新组合)
