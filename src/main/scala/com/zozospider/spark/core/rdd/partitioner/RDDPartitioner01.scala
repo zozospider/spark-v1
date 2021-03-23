@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.{Partitioner, SparkConf, SparkContext}
 
 // 分区器
+// 相关内容见 RDDOperator14PartitionBy.scala, RDDOperator14PartitionBy2.scala
 object RDDPartitioner01 {
 
   def main(args: Array[String]): Unit = {

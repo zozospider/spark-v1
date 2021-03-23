@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 // 行动算子 - saveAsTextFile() saveAsObjectFile() saveAsSequenceFile()
+// 相关内容见 RDDSave01.scala
 object RDDOperator11Save {
 
   def main(args: Array[String]): Unit = {

@@ -4,6 +4,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.{HashPartitioner, SparkConf, SparkContext}
 
 // 转换算子 - Key - Value 类型 - partitionBy()
+// 相关内容见 RDDPartitioner01.scala
 object RDDOperator14PartitionBy2 {
 
   def main(args: Array[String]): Unit = {
