@@ -31,6 +31,8 @@ object Accumulator04 {
 }
 
 // 自定义累加器
+// IN: word: String
+// OUT: Map[word: String, count: Int]
 class WordCountAccumulator extends AccumulatorV2[String, mutable.Map[String, Int]] {
 
   private val map: mutable.Map[String, Int] = mutable.Map[String, Int]()
