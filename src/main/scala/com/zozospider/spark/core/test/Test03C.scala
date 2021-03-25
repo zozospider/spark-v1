@@ -44,12 +44,15 @@ object Test03C {
     println("------")
 
     // 3. 计算单跳转换率: 分子 / 分母
-    val map1: Map[Long, Int] = denominatorArray.toMap
-    /*numeratorArray.foreach((tuple: ((Long, Long), Int)) => {
-      val i: Int = map1.getOrElse(tuple._1._1, 0)
-      val result: Double = tuple._2.toDouble / i
-      println(s"页面 ${tuple._1} 跳转到页面 ${tuple._2} 的单跳转换率为: $result")
-    })*/
+    numeratorArray.foreach((tuple: ((Long, Long), Int)) => {
+      val i: Int = denominatorArray.toMap.getOrElse(tuple._1._1, 0)
+      if (i != 0) {
+        val result: Double = tuple._2.toDouble / i
+        println(s"页面 ${tuple._1._1} 跳转到页面 ${tuple._1._2} 的单跳转换率为: $result")
+      } else {
+        println("ERROR, it should not be happen, please check the program.")
+      }
+    })
 
     context.stop
   }
