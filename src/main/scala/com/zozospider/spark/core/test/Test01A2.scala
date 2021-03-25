@@ -13,9 +13,8 @@ object Test01A2 {
     // 问题:
     // 1. 存在大量不同数据的 reduceByKey() 性能较低 (有 shuffle)
 
-    // 读取原始日志
+    // 读取原始日志, 缓存提高性能
     val rdd: RDD[String] = context.textFile("data-dir\\test\\user_visit_action_simple.txt")
-    // 缓存提高性能
     rdd.cache
 
     // 统计品类点击数量: (品类 ID, (点击数, 0, 0))

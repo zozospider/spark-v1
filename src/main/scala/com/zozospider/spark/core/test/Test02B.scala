@@ -10,9 +10,8 @@ object Test02B {
     val conf: SparkConf = new SparkConf().setAppName("Test").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
-    // 读取原始日志
+    // 读取原始日志, 缓存提高性能
     val rdd: RDD[String] = context.textFile("data-dir\\test\\user_visit_action_simple.txt")
-    // 缓存提高性能
     rdd.cache
 
     // 获取 Top10 热门品类集合
