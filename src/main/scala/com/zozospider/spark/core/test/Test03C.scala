@@ -15,6 +15,9 @@ object Test03C {
     val rdd: RDD[String] = context.textFile("data-dir\\test\\user_visit_action_simple.txt")
     rdd.cache
 
+    // 只统计指定页面的单跳转换率
+    val filterPageIds: List[Long] = List(10L, 20L, 30L, 40L, 50L)
+
     // 将每一行原始数据转换为一个 UserVisitAction 样例类
     val actionRDD: RDD[UserVisitAction] = rdd.map((s: String) => {
       val fields: Array[String] = s.split("_")
@@ -34,12 +37,12 @@ object Test03C {
     })
 
     // 1. 计算分子
-    val numeratorArray: Array[((Long, Long), Int)] = numerator(actionRDD)
+    val numeratorArray: Array[((Long, Long), Int)] = numerator(actionRDD, filterPageIds)
     numeratorArray.take(10).foreach(println)
     println("------")
 
     // 2. 计算分母
-    val denominatorArray: Array[(Long, Int)] = denominator(actionRDD)
+    val denominatorArray: Array[(Long, Int)] = denominator(actionRDD, filterPageIds)
     denominatorArray.take(10).foreach(println)
     println("------")
 
@@ -58,7 +61,7 @@ object Test03C {
   }
 
   // 计算分子
-  def numerator(actionRDD: RDD[UserVisitAction]): Array[((Long, Long), Int)] = {
+  def numerator(actionRDD: RDD[UserVisitAction], filterPageIds: List[Long]): Array[((Long, Long), Int)] = {
 
     // 根据 session ID 分组: key (session ID) - value (多个 action)
     val rdd: RDD[(String, Iterable[UserVisitAction])] = actionRDD.groupBy((action: UserVisitAction) => action.session_id)
@@ -73,9 +76,12 @@ object Test03C {
       // 方式一: Sliding() 滑窗
       // 方式二: zip() 拉链: ((10, 20, 30, 40) 和 (20, 30, 40))
       val list3: List[(Long, Long)] = list2.zip(list2.tail)
+      // 过滤指定页面跳转
+      val filterPageIdsTuple: List[(Long, Long)] = filterPageIds.zip(filterPageIds.tail)
+      val list4: List[(Long, Long)] = list3.filter((tuple: (Long, Long)) => filterPageIdsTuple.contains(tuple))
       // 转换成: (((10, 20), 1), ((20, 30), 1), ((30, 40), 1))
-      val list4: List[((Long, Long), Int)] = list3.map((tuple: (Long, Long)) => (tuple, 1))
-      list4
+      val list5: List[((Long, Long), Int)] = list4.map((tuple: (Long, Long)) => (tuple, 1))
+      list5
     })
 
     // 多次转换
@@ -91,11 +97,16 @@ object Test03C {
   }
 
   // 计算分母
-  def denominator(actionRDD: RDD[UserVisitAction]): Array[(Long, Int)] = {
+  def denominator(actionRDD: RDD[UserVisitAction], filterPageIds: List[Long]): Array[(Long, Int)] = {
 
-    val rdd: RDD[(Long, Int)] = actionRDD.map((action: UserVisitAction) => (action.page_id, 1))
+    // 过滤指定页面
+    val filterPageIdsInit: List[Long] = filterPageIds.init
+    val rdd: RDD[UserVisitAction] = actionRDD.filter((action: UserVisitAction) => filterPageIdsInit.contains(action.page_id))
+
+    // 统计每个页面访问次数
+    val rdd2: RDD[(Long, Int)] = rdd.map((action: UserVisitAction) => (action.page_id, 1))
       .reduceByKey((i1: Int, i2: Int) => i1 + i2)
-    rdd.collect
+    rdd2.collect
   }
 
 }
