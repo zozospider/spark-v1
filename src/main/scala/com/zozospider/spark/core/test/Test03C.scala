@@ -16,7 +16,7 @@ object Test03C {
     rdd.cache
 
     // 只统计指定页面的单跳转换率
-    val filterPageIds: List[Long] = List(10L, 20L, 30L, 40L, 50L)
+    val filterPageIds: List[Long] = List(10L, 20L, 30L, 40L, 50L, 60L)
 
     // 将每一行原始数据转换为一个 UserVisitAction 样例类
     val actionRDD: RDD[UserVisitAction] = rdd.map((s: String) => {
