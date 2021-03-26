@@ -8,7 +8,7 @@ object WordCount2 {
   def main(args: Array[String]): Unit = {
 
     // 建立和 Spark Framework 的连接, 创建 Application
-    val conf: SparkConf = new SparkConf().setAppName("WordCount").setMaster("local")
+    val conf: SparkConf = new SparkConf().setAppName("WordCount").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     // 执行业务操作

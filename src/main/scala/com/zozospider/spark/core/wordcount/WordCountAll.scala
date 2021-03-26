@@ -8,7 +8,7 @@ import scala.collection.mutable
 object WordCountAll {
 
   def main(args: Array[String]): Unit = {
-    val conf: SparkConf = new SparkConf().setAppName("WordCount").setMaster("local")
+    val conf: SparkConf = new SparkConf().setAppName("WordCount").setMaster("local[*]")
     val context: SparkContext = new SparkContext(conf)
 
     val rdd: RDD[String] = context.textFile("data-dir\\word-count")
