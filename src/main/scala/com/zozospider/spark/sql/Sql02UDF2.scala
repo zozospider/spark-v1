@@ -11,7 +11,7 @@ object Sql02UDF2 {
     val conf: SparkConf = new SparkConf().setAppName("SQL").setMaster("local[*]")
     val session: SparkSession = SparkSession.builder().config(conf).getOrCreate()
 
-    // UDF: 自定义求年龄的平均值
+    // UDF: 自定义求年龄的平均值: 弱类型
 
     val dataFrame: DataFrame = session.read.json("data-dir\\sql\\user.json")
     dataFrame.createOrReplaceTempView("user")
