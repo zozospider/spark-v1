@@ -1,3 +1,3 @@
 {"username": "one", "age": 10}
 {"username": "two", "age": 20}
-{"username": "three", "age": 30}
+[{"username": "three", "age": 30},{"username": "four", "age": 40}]
