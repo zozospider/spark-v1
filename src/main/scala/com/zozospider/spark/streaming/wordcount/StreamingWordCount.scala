@@ -4,6 +4,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
+// 无状态转化操作
 object StreamingWordCount {
 
   def main(args: Array[String]): Unit = {
