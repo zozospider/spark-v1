@@ -25,6 +25,7 @@ object Streaming01WordCount {
     val dStream: DStream[String] = inputDStream.flatMap(_.split(" "))
     val dStream2: DStream[(String, Int)] = dStream.map((s: String) => (s, 1))
     val dStream3: DStream[(String, Int)] = dStream2.reduceByKey((i1: Int, i2: Int) => i1 + i2)
+    // 打印时间戳
     dStream3.print
 
     // 关闭环境 (不能这样做)
