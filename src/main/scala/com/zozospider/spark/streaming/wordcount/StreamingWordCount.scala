@@ -1,10 +1,10 @@
-package com.zozospider.spark.streaming
+package com.zozospider.spark.streaming.wordcount
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-object Streaming01WordCount {
+object StreamingWordCount {
 
   def main(args: Array[String]): Unit = {
 
@@ -20,10 +20,13 @@ object Streaming01WordCount {
     // hello
 
     // 逻辑处理
-    // 获取端口数据
+    // 创建 ReceiverInputDStream: 通过监控端口创建 DStream, 读进来的数据为一行行
     val inputDStream: ReceiverInputDStream[String] = streamingContext.socketTextStream(hostname = "localhost", port = 9999)
+    // 将每一行数据做切分, 形成一个个单词
     val dStream: DStream[String] = inputDStream.flatMap(_.split(" "))
+    // 将单词映射成元组 (word, 1)
     val dStream2: DStream[(String, Int)] = dStream.map((s: String) => (s, 1))
+    // 将相同的单词次数做统计
     val dStream3: DStream[(String, Int)] = dStream2.reduceByKey((i1: Int, i2: Int) => i1 + i2)
     // 打印时间戳
     dStream3.print
