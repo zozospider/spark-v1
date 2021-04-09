@@ -13,6 +13,7 @@ object Sql03JDBC2 {
     val context: SparkContext = session.sparkContext
     import session.implicits._
 
+    // 创建表 table_from_spark 并插入两条数据
     val rdd: RDD[TableFromSpark] = context.makeRDD(List(TableFromSpark(10, "s10"), TableFromSpark(20, "s20")))
     val dataSet: Dataset[TableFromSpark] = rdd.toDS
     dataSet.write
