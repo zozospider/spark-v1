@@ -28,7 +28,7 @@ object DStreamCreate02DIY {
 // 自定义数据采集器
 class MyReceiver extends Receiver[String](StorageLevel.MEMORY_ONLY) {
 
-  private var isStart: Boolean = false
+  private var isStart: Boolean = _
 
   // 最初启动的时候, 调用该方法, 作用为: 读数据并将数据发送给 Spark
   override def onStart(): Unit = {
