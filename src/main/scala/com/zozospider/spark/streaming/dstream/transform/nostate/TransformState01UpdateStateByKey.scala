@@ -1,12 +1,12 @@
-package com.zozospider.spark.streaming.dstream.transform
+package com.zozospider.spark.streaming.dstream.transform.nostate
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-// DStream 转换 - 有状态转化操作 - UpdateStateByKey
+// DStream 转换 - 有状态转化操作 - updateStateByKey()
 // 相关内容见 StreamingWordCount2.scala
-object DStreamTransform01State {
+object TransformState01UpdateStateByKey {
 
   def main(args: Array[String]): Unit = {
     val conf: SparkConf = new SparkConf().setAppName("Streaming").setMaster("local[*]")
