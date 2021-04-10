@@ -22,19 +22,19 @@ object TransformState02Window {
     val dStream2: DStream[(String, Int)] = dStream.map((s: String) => (s, 1))
 
     // A. 窗口的范围应该是采集周期的整数倍
-    // 3 秒一个批次, 窗口 12 秒
+    // 3 秒一个批次, 窗口 12 秒 (存在重复统计)
     /*val dStreamA: DStream[(String, Int)] = dStream2.window(windowDuration = Seconds(12))
     val dStreamA2: DStream[(String, Int)] = dStreamA.reduceByKey((i1: Int, i2: Int) => i1 + i2)
     dStreamA2.print*/
 
-    // B. 窗口可以滑动, 但是默认情况下, 一个采集进行滑动, 这样的话可能会出现重复数据的计算, 为了避免这种情况, 可以改变滑动的步长
-    // 3 秒一个批次, 窗口 12 秒, 滑步 6 秒
+    // B. 窗口可以滑动, 但是默认情况下, 一个采集进行滑动, 这样的话可能会出现重复数据的计算, 为了避免这种情况, 可以改变滑动的步长 (如窗口和滑步都为 6s)
+    // 3 秒一个批次, 窗口 12 秒, 滑步 6 秒 (存在重复统计)
     /*val dStreamB: DStream[(String, Int)] = dStream2.window(windowDuration = Seconds(12), slideDuration = Seconds(6))
     val dStreamB2: DStream[(String, Int)] = dStreamB.reduceByKey((i1: Int, i2: Int) => i1 + i2)
     dStreamB2.print*/
 
     // C. 与 B 效果一样
-    // 3 秒一个批次, 窗口 12 秒, 滑步 6 秒
+    // 3 秒一个批次, 窗口 12 秒, 滑步 6 秒 (存在重复统计)
     val dStreamC: DStream[(String, Int)] = dStream2.reduceByKeyAndWindow(reduceFunc = {
       (i1: Int, i2: Int) => i1 + i2
     }, windowDuration = Seconds(12), slideDuration = Seconds(6))
