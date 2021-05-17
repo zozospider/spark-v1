@@ -5,7 +5,7 @@ import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 // 有状态转化操作
-// 相关内容见 DStreamTransform01State.scala
+// 相关内容见 TransformState01UpdateStateByKey.scala
 object StreamingWordCount2 {
 
   def main(args: Array[String]): Unit = {
