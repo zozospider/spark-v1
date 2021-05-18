@@ -51,7 +51,7 @@ object TransformState02Window {
     dStreamD.print*/
 
     // E. 窗口 12 秒, 滑步 6 秒 (有重复统计)
-    // 当窗口较大, 滑步较小时, 可以采用增加数据和删除数据的方式, 无需重复计算 (此处不是重复统计), 提示性能
+    // 当窗口较大, 滑步较小时, 可以采用增加数据和删除数据的方式, 无需重复计算 (此处不是重复统计), 提升性能
     // 注: 此方式需要指定 checkpoint 目录
     val dStreamE: DStream[(String, Int)] = dStream2.reduceByKeyAndWindow(reduceFunc = {
       (i1: Int, i2: Int) => i1 + i2
