@@ -1,4 +1,4 @@
-package com.zozospider.spark.streaming.dstream.transform.nostate
+package com.zozospider.spark.streaming.dstream.transform.state
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, ReceiverInputDStream}

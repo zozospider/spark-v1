@@ -1,4 +1,4 @@
-package com.zozospider.spark.streaming.dstream.transform.state
+package com.zozospider.spark.streaming.dstream.transform.nostate
 
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD

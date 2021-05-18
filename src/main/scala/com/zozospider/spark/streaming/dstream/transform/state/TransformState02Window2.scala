@@ -1,4 +1,4 @@
-package com.zozospider.spark.streaming.dstream.transform.nostate
+package com.zozospider.spark.streaming.dstream.transform.state
 
 // DStream 转换 - 有状态转化操作 - 其他 window() 方法
 object TransformState02Window2 {
