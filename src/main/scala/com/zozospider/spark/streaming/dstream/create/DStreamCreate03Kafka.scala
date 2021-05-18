@@ -18,8 +18,8 @@ object DStreamCreate03Kafka {
       ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "vm017:9092,vm06:9092,vm03:9092",
       // 当前客户端的消费者组名称
       ConsumerConfig.GROUP_ID_CONFIG -> "consumer-group-kafka",
-      "key.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer",
-      "value.deserializer" -> "org.apache.kafka.common.serialization.StringDeserializer"
+      ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -> "org.apache.kafka.common.serialization.StringDeserializer",
+      ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -> "org.apache.kafka.common.serialization.StringDeserializer"
     )
 
     // 读取 Kafka 数据创建 DStream
@@ -33,11 +33,12 @@ object DStreamCreate03Kafka {
     val dStream2: DStream[String] = inputDStream.map((kv: ConsumerRecord[String, String]) => kv.value())
 
     // WordCount
-    dStream2
+    /*dStream2
       .flatMap((s: String) => s.split(" "))
       .map((s: String) => (s, 1))
       .reduceByKey((i1: Int, i2: Int) => i1 + i2)
-      .print()
+      .print()*/
+    dStream2.print()
 
     streamingContext.start
     streamingContext.awaitTermination
