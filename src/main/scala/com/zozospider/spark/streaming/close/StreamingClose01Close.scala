@@ -11,7 +11,7 @@ object StreamingClose01Close {
     val conf: SparkConf = new SparkConf().setAppName("Streaming").setMaster("local[*]")
     val streamingContext: StreamingContext = new StreamingContext(conf = conf, batchDuration = Seconds(3))
 
-    // 流式任务需要 7*24 小时执行, 但是有时涉及到升级代码需要主动停止程序
+    // 流式任务需要 7 * 24 小时执行, 但是有时涉及到升级代码需要主动停止程序
     // 但是分布式程序, 没办法做到一个个进程去杀死, 所有配置优雅的关闭就显得至关重要了
     // 使用外部文件系统来控制内部程序关闭
 
