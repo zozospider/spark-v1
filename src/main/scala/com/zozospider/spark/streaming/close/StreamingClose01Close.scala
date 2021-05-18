@@ -35,9 +35,12 @@ object StreamingClose01Close {
 class MonitorStop(streamingContext: StreamingContext) extends Runnable {
 
   override def run(): Unit = {
+
     // 循环判断是否需要退出
     while (true) {
+
       Thread.sleep(10000)
+
       // 从第三方 (如 MySQL, Redis, HDFS, ZooKeeper, File 等) 获取是否退出标识
       // 此处模拟退出测试
       val stopFlag: Boolean = true
