@@ -3,7 +3,15 @@ package com.zozospider.spark.streaming.test
 import scala.collection.mutable.ListBuffer
 import scala.util.Random
 
-case class City(id: Long, name: String, area: String)
+case class AdLog(timestamp: Long,
+                 cityArea: String,
+                 cityName: String,
+                 userId: String,
+                 adId: String)
+
+case class City(cityId: Long,
+                cityArea: String,
+                cityName: String)
 
 case class RandomValue[T](value: T, weight: Int)
 

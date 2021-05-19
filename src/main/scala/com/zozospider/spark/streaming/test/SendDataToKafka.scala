@@ -1,24 +1,18 @@
 package com.zozospider.spark.streaming.test
 
-import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
+import org.apache.kafka.clients.producer.KafkaProducer
 
-import java.util.Properties
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
 // 生产数据
-object Test01SendDataToKafka {
+object SendDataToKafka {
 
   // Application => Kafka => SparkStreaming => Analysis
   def main(args: Array[String]): Unit = {
 
-    // Kafka 配置
-    val properties: Properties = new Properties()
-    properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "vm017:9092,vm06:9092,vm03:9092")
-    properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer")
-    properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer")
-    // KafkaProducer
-    val kafkaProducer: KafkaProducer[String, String] = new KafkaProducer[String, String](properties)
+    // 获取 KafkaProducer
+    val kafkaProducer: KafkaProducer[String, String] = MyKafkaUtil.getKafkaProducer
 
     // 不断发送字符串到 Kafka
     while (true) {
@@ -31,8 +25,7 @@ object Test01SendDataToKafka {
         println(s)
 
         // 发送本行字符串记录到 Kafka
-        val record: ProducerRecord[String, String] = new ProducerRecord[String, String]("topic-kafka", s)
-        kafkaProducer.send(record)
+        MyKafkaUtil.sendDataToKafka(kafkaProducer = kafkaProducer, topic = "topic-kafka", value = s)
       })
 
       println("------")
@@ -60,8 +53,8 @@ object Test01SendDataToKafka {
       val timestamp: Long = System.currentTimeMillis()
       val city: City = getter.randomValue
       // val cityId: Long = city.id
-      val cityArea: String = city.area
-      val cityName: String = city.name
+      val cityArea: String = city.cityArea
+      val cityName: String = city.cityName
       val userId: Int = new Random().nextInt(6) + 1
       val adId: Int = new Random().nextInt(6) + 1
 

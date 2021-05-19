@@ -1,6 +1,7 @@
 package com.zozospider.spark.streaming.dstream.create
 
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecord}
+import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.kafka010.{ConsumerStrategies, KafkaUtils, LocationStrategies}
@@ -18,8 +19,8 @@ object DStreamCreate03Kafka {
       ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "vm017:9092,vm06:9092,vm03:9092",
       // 当前客户端的消费者组名称
       ConsumerConfig.GROUP_ID_CONFIG -> "consumer-group-kafka",
-      ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -> "org.apache.kafka.common.serialization.StringDeserializer",
-      ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -> "org.apache.kafka.common.serialization.StringDeserializer"
+      ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG -> classOf[StringDeserializer],
+      ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG -> classOf[StringDeserializer]
     )
 
     // 读取 Kafka 数据创建 DStream
@@ -29,7 +30,7 @@ object DStreamCreate03Kafka {
       consumerStrategy = ConsumerStrategies.Subscribe[String, String](topics = Set("topic-kafka"), kafkaParams = map)
     )
 
-    // 将每条消息的 K V 取出
+    // 将每条消息的 value 取出
     val dStream2: DStream[String] = inputDStream.map((kv: ConsumerRecord[String, String]) => kv.value())
 
     // WordCount
