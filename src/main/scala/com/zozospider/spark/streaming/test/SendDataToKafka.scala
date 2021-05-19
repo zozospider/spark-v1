@@ -18,7 +18,7 @@ object SendDataToKafka {
     while (true) {
 
       // 每次获取 20 条随机生成的字符串: 某个时间点 某个地区 某个城市 某个用户 某个广告
-      val lines: Array[String] = getData(20)
+      val lines: Array[String] = getData(10)
 
       // 遍历发送每一行
       lines.foreach((s: String) => {
@@ -29,7 +29,7 @@ object SendDataToKafka {
       })
 
       println("------")
-      Thread.sleep(2000)
+      Thread.sleep(3000)
     }
   }
 

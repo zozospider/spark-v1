@@ -9,6 +9,10 @@ case class AdLog(timestamp: Long,
                  userId: String,
                  adId: String)
 
+case class UserAd(dt: String,
+                  userId: String,
+                  adId: String)
+
 case class City(cityId: Long,
                 cityArea: String,
                 cityName: String)

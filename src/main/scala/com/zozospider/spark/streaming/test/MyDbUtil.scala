@@ -2,7 +2,7 @@ package com.zozospider.spark.streaming.test
 
 import com.zaxxer.hikari.{HikariConfig, HikariDataSource}
 
-import java.sql.{Connection, PreparedStatement, ResultSet, Timestamp}
+import java.sql.{Connection, PreparedStatement, ResultSet}
 
 
 object MyDbUtil {
@@ -13,7 +13,7 @@ object MyDbUtil {
     val hikariConfig: HikariConfig = new HikariConfig()
     hikariConfig.setMaximumPoolSize(20)
     hikariConfig.setDriverClassName("org.mariadb.jdbc.Driver")
-    hikariConfig.setJdbcUrl("jdbc:mysql://111.230.233.137:3306/test")
+    hikariConfig.setJdbcUrl("jdbc:mysql://111.230.233.137:3306/spark_test")
     hikariConfig.setUsername("zozo")
     hikariConfig.setPassword("zzloveooforever520")
     // hikariConfig.setAutoCommit(false)
@@ -106,13 +106,15 @@ object MyDbUtil {
     }
   }
 
+  // for test
   def main(args: Array[String]): Unit = {
+    /* for database: test
     val bool: Boolean = isExist("select * from teacher where tid = ?", Array("02"))
     val s: String = get[String]("select tname from teacher where tid = ?", Array("02"))
     val time: Timestamp = get[Timestamp]("select Sage from student where sid = ?", Array("03"))
     println(bool)
     println(s)
-    println(time)
+    println(time)*/
   }
 
 }
