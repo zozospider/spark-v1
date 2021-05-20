@@ -13,6 +13,9 @@ case class UserAd(dt: String,
                   userId: String,
                   adId: String)
 
+case class AdHM(adId: String,
+                hm: String)
+
 case class City(cityId: Long,
                 cityArea: String,
                 cityName: String)

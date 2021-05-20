@@ -1,14 +1,16 @@
 package com.zozospider.spark.streaming.test
 
 import org.apache.spark.rdd.RDD
+import org.apache.spark.streaming.Minutes
 import org.apache.spark.streaming.dstream.DStream
 
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class Test01AHandler extends Serializable {
+class TestHandler extends Serializable {
 
   private val dateFormat: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd")
+  private val dateFormat2: SimpleDateFormat = new SimpleDateFormat("HH:mm")
 
   // 过滤在黑名单中的用户
   def filterByBlackList(adLogDStream: DStream[AdLog]): DStream[AdLog] = {
@@ -23,11 +25,12 @@ class Test01AHandler extends Serializable {
 
   // 统计每个用户点击次数 (每个采集周期)
   def toUserAdCount(adLogDStream: DStream[AdLog]): DStream[(UserAd, Long)] = {
+    // 转换数据结构
     val dStream: DStream[(UserAd, Long)] = adLogDStream.map((adLog: AdLog) => {
       val dateStr: String = dateFormat.format(new Date(adLog.timestamp))
       (UserAd(dateStr, adLog.userId, adLog.adId), 1L)
     })
-    val dStream2: DStream[(UserAd, Long)] = dStream.reduceByKey((i1: Long, i2: Long) => i1 + i2)
+    val dStream2: DStream[(UserAd, Long)] = dStream.reduceByKey((l1: Long, l2: Long) => l1 + l2)
     dStream2
   }
 
@@ -86,6 +89,35 @@ class Test01AHandler extends Serializable {
         })
       })
     })
+  }
+
+  // 统计每个广告的点击次数 (每个窗口)
+  def toAdHMCount(adLogDStream: DStream[AdLog]): DStream[(AdHM, Long)] = {
+
+    // 开窗: 时间间隔为 2 分钟的 window
+    val dStream: DStream[AdLog] = adLogDStream.window(Minutes(2))
+
+    // 转换数据结构: AdLog -> ((adId, dt), 1)
+    val dStream2: DStream[(AdHM, Long)] = dStream.map((adLog: AdLog) => {
+      val hmStr: String = dateFormat2.format(new Date(adLog.timestamp))
+      (AdHM(adLog.adId, hmStr), 1L)
+    })
+    val dStream3: DStream[(AdHM, Long)] = dStream2.reduceByKey((l1: Long, l2: Long) => l1 + l2)
+    dStream3
+  }
+
+  def groupAd(dStream: DStream[(AdHM, Long)]): DStream[(String, List[(String, Long)])] = {
+
+    val dStream2: DStream[(String, (String, Long))] = dStream.map((tuple: (AdHM, Long)) =>
+      (tuple._1.adId, (tuple._1.hm, tuple._2)))
+
+    val dStream3: DStream[(String, Iterable[(String, Long)])] = dStream2.groupByKey()
+
+    val dStream4: DStream[(String, List[(String, Long)])] = dStream3.mapValues((iterable: Iterable[(String, Long)]) => {
+      iterable.toList.sortWith((tuple1: (String, Long), tuple2: (String, Long)) =>
+        tuple1._1 < tuple2._1)
+    })
+    dStream4
   }
 
 }
