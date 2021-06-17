@@ -3,11 +3,12 @@ package com.zozospider.spark.core.rdd.operator.action
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 行动算子 - foreach()
-object RDDOperator12Foreach {
+// 行动算子 - foreach() foreachPartition()
+object RDDOperator12ForeachAndForeachPartition {
 
   def main(args: Array[String]): Unit = {
     val conf: SparkConf = new SparkConf().setAppName("RDD").setMaster("local[*]")
+    conf.set("spark.default.parallelism", "6")
     val context: SparkContext = new SparkContext(conf)
 
     // foreach():
@@ -27,6 +28,14 @@ object RDDOperator12Foreach {
 
     // 此处 foreach 其实是 Executor 端 (分布式节点) 分别执行打印的
     rdd.foreach(println)
+
+    println("------")
+
+    // foreachPartition 对每个分区多个元素进行一次操作
+    rdd.foreachPartition((iterator: Iterator[Int]) => {
+      println("***")
+      iterator.foreach(println)
+    })
 
     context.stop
   }
