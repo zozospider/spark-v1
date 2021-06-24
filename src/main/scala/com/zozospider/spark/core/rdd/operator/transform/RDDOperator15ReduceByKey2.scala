@@ -5,8 +5,8 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.util.Random
 
-// 转换算子 - Key - Value 类型 - groupByKey() - 双重聚合防止 shuffle 过程中可能的数据倾斜
-object RDDOperator16GroupByKey2 {
+// 转换算子 - Key - Value 类型 - reduceByKey() - 双重聚合防止 shuffle 过程中可能的数据倾斜
+object RDDOperator15ReduceByKey2 {
 
   def main(args: Array[String]): Unit = {
 

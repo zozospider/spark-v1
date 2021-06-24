@@ -14,7 +14,7 @@ object RDDOperator17ReduceByKeyAndGroupByKey {
 
     // 从功能的角度:
     // reduceByKey 其实包含分组和聚合的功能,
-    // GroupByKey 只能分组不能聚合,
+    // groupByKey 只能分组不能聚合,
     // 所以在分组聚合的场合下, 推荐使用 reduceByKey, 如果仅仅是分组而不需要聚合, 那么只能使用 groupByKey
 
     // reduceByKey 分区内和分区间计算规则是相同的
