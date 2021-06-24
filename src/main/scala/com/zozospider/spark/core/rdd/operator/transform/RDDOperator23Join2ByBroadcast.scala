@@ -4,7 +4,7 @@ import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
-// 转换算子 - Key - Value 类型 - join() - 通过广播变量实现类似 join 的功能
+// 转换算子 - Key - Value 类型 - join() - 通过广播变量实现类似 join() 的功能, 可解决 join() 可能存在的数据倾斜问题 (前提是某个 RDD 较小)
 object RDDOperator23Join2ByBroadcast {
 
   def main(args: Array[String]): Unit = {
