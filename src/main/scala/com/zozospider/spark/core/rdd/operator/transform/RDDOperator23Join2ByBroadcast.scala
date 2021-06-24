@@ -24,7 +24,7 @@ object RDDOperator23Join2ByBroadcast {
       // 访问广播变量
       val arrayB: Array[(String, Int)] = broadcastB.value
       // 找出 rddB (广播变量) 中具有和 rddA 相同的所有 key, 组合成 tuple 并添加到 list 中
-      var result: List[(String, (Int, Int))] = List()
+      var result: List[(String, (Int, Int))] = Nil
       arrayB.foreach((tupleB: (String, Int)) => {
         if (tupleB._1 == tupleA._1) {
           result = result :+ (tupleA._1, (tupleA._2, tupleB._2))
@@ -46,7 +46,7 @@ object RDDOperator23Join2ByBroadcast {
       // 访问广播变量
       val arrayA: Array[(String, Int)] = broadcastA.value
       // 找出 rddA (广播变量) 中具有和 rddB 相同的所有 key, 组合成 tuple 并添加到 list 中
-      var result: List[(String, (Int, Int))] = List()
+      var result: List[(String, (Int, Int))] = Nil
       arrayA.foreach((tupleA: (String, Int)) => {
         if (tupleA._1 == tupleB._1) {
           result = result :+ (tupleB._1, (tupleB._2, tupleA._2))
